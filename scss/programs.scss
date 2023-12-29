@@ -1,0 +1,539 @@
+//Snapping
+.snapping-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 2px;
+    background-color: red;
+}
+.snapping-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 2px;
+    background-color: red;
+}
+// Notepad 
+#notepad-panel {
+    position: relative;
+}
+.show-active {
+    display: inline-block;
+    margin: 0 auto;
+    position: absolute;
+    background: #81aefd;
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+}
+.notepad-programm {
+    display: none;
+    position: absolute;
+    z-index: 11;
+    top: 20%;
+    left: 25%;
+    height: 500px;
+    width: 700px;
+    background-color: #2963c8a9;
+    backdrop-filter: blur(10px);
+    color: #fff;
+    text-shadow: none;
+    transform-origin: left;
+}
+
+.notepad-row {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.notepad-top-column {
+    user-select: none;
+    flex: 0 0 48px;
+    display: flex;
+}
+.notepad-icon {
+    height: 100%;
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.notepad-title-col {
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+.window-buttons {
+    height: 100%;
+    flex: 0 0 150px;
+    //border: 1px solid red;
+    display: flex;
+    align-items: center;
+}
+.minimize {
+    height: 100%;
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    span {
+        transition-duration: 0.1s;
+        transition-property: all;
+        transition-timing-function: ease;
+        display: inline-block;
+        width: 40%;
+        height: 1px;
+        background-color: #fff;
+    }
+    &:hover {
+        background-color: #5d98ff85;
+    }
+    &:active {
+        background-color: #5d98ffc8;
+
+        span {
+            transform: scale(0.9, 0.9);
+        }
+    }
+}
+.maximize {
+    height: 100%;
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    & .square {
+        transition-duration: 0.2s;
+        transition-property: all;
+        transition-timing-function: ease;
+        width: 36%;
+        height: 35%;
+        border: 1px solid #fff;
+    }
+    &:hover {
+        background-color: #5d98ff85;
+    }
+    &:active {
+        background-color: #5d98ffc8;
+
+        & .square {
+            transform: scale(0.9, 0.9);
+            border: 1px solid #fff;
+        }
+    }
+}
+
+.close-cross {
+    height: 100%;
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cb0e40;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    & img {
+        transition-duration: 0.1s;
+        transition-property: all;
+        transition-timing-function: ease;
+        user-select: none;
+        display: inline-block;
+        width: 32px;
+    }
+    &:hover {
+        background-color: #d83a64;
+    }
+    &:active {
+        background-color: #e45279;
+
+       & img {
+            transform: scale(0.9, 0.9);
+        }
+    }
+}
+.notepad-menu-column {
+    position: relative;
+    flex: 0 0 40px;
+    background-color: #5d99ff;
+    display: flex;
+    align-items: center;
+}
+.file-menu {
+    position: relative;
+    height: 100%;
+    flex: 0 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    h2 {
+        user-select: none;
+        font-size: 1.1rem;
+    }
+
+    &:hover {
+        background-color: #81aefd;
+    }
+}
+.fallDownFile {
+    position: absolute;
+    z-index: 13;
+    width: 200px;
+    height: 150px;
+    background-color: #79a7f6;
+    backdrop-filter: blur(10px);
+    bottom: -150px;
+    left: 0;
+}
+.fallDownList {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    li {
+        user-select: none;
+        flex: 1 1 auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 15px;
+        // border-bottom: 1px solid #95b9f9;
+
+        font-size: 1.1rem;
+
+        
+    }
+    li:hover {
+        background-color: #95b9f9;
+    }
+    li:active {
+        background-color: #7d9dd2;
+    }
+}
+#NotepadsaveAs {
+    border-bottom: 1px solid #95b9f9;
+}
+#notepadUndo {
+    border-bottom: 1px solid #95b9f9;
+}
+#NotepadDelete {
+    border-bottom: 1px solid #95b9f9;
+}
+#NotepadZoom {
+    position: relative;
+    border-bottom: 1px solid #95b9f9;
+    display: flex;
+    justify-content: flex-start;
+    & span {
+        display: inline-block;
+        margin-left: 120px;
+        justify-self: flex-end;
+        font-size: 20px;
+    }
+}
+#NotepadZoomOut {
+    border-bottom: 1px solid #95b9f9;
+}
+#notepadWordWrap {
+    display: flex;
+    justify-content: flex-start;
+    & p {
+        margin: 0 82px 0 0;
+    }
+    & span {
+        display: none;
+        justify-self: flex-end;
+        font-size: 20px;
+    }
+}
+#notepadUploadTXT {
+    display: none;
+}
+.zoomList {
+    border: 1px solid #95b9f9;
+    width: 200px;
+    height: 112.5px;
+    position: absolute;
+    background-color: #79a7f6;
+    left: 200px;
+    top: 0px;
+    display: none;
+    flex-direction: column;
+
+    & li {
+        flex: 1 1 auto;
+    }
+}
+.edit-menu {
+    position: relative;
+    height: 100%;
+    flex: 0 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    h2 {
+        user-select: none;
+        font-size: 1.1rem;
+    }
+
+    &:hover {
+        background-color: #81aefd;
+    }
+}
+.fallDownEdit {
+    position: absolute;
+    z-index: 13;
+    width: 200px;
+    height: 262.5px;
+    background-color: #79a7f6;
+    backdrop-filter: blur(10px);
+    bottom: -262.5px;
+    left: 0;
+}
+.view-menu {
+    position: relative;
+    height: 100%;
+    flex: 0 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    h2 {
+        user-select: none;
+        font-size: 1.1rem;
+    }
+
+    &:hover {
+        background-color: #81aefd;
+    }
+}
+.fallDownView {
+    position: absolute;
+    z-index: 13;
+    width: 200px;
+    height: 75px;
+    background-color: #79a7f6;
+    backdrop-filter: blur(10px);
+    bottom: -75px;
+    left: 0;
+}
+.notepad-body-column {
+    flex: 1 1 auto;
+    position: relative;
+    z-index: 12;
+    textarea {
+        overflow-wrap: normal;
+        zoom: 100%;
+        overflow-x:auto;
+        font-family: Consolas;
+        resize: none;
+        padding: 10px;
+        height: 100%;
+        width: 100%;
+        background-color: #ffffffbe;
+        font-size: 1.2rem;
+    }
+}
+.notepad-saved-notfication {
+    transition-duration: 1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    opacity: 0;
+    position: absolute;
+    user-select: none;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 150px;
+    height: 50px;
+    background: #81aefdc0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    & p{
+        font-size: 22px;
+    }
+}
+.notepad-legend-column {
+    flex: 0 0 25px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    span {
+        display: inline-block;
+        height: 70%;
+        width: 1px;
+        background-color: #5d98ffe3;
+    }
+}
+.notepad-line-col-legeng {
+    flex: 1 1 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.notepad-scale-legend {
+    flex: 0 1 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.notepad-CRLF-Legend {
+    flex: 0 1 180px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.notepad-encode-legend {
+    flex: 0 1 130px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.menu-inactive {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.menu-active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.notepadFindSearch {
+    position: absolute;
+    z-index: 13;
+    top: 100%;
+    right: 0;
+    height: 50px;
+    width: 378px;
+    background-color: #2963c8a9;
+    backdrop-filter: blur(10px);
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    transform-origin: top;
+    display: none;
+    align-items: center;
+    justify-content: space-around;
+    transform: scale(1, 0);
+}
+#findWordNotepad {
+    flex: 0 0 10%;
+    height: 100%;
+    padding: 5px 5px 5px 15px;
+    background-color: #79a7f6;
+    font-size: 1.2rem;
+    color: #fff;
+    &::placeholder {
+        color: #436eb9;
+    }
+    &:hover {
+        background-color: #81aefd;
+    }
+    &:focus {
+        background-color: #81aefd;
+    }
+}
+.notepadFindArrowDown {
+    flex: 0 0 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+        display: inline-block;
+        max-width: 21px;
+        user-select: none;
+    }
+
+    &:hover {
+        background-color: #81aefd;
+    }
+
+    &:active {
+        background-color: #5d98ffc8;
+    }
+}
+.notepadFindArrowUp {
+    flex: 0 0 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+        display: inline-block;
+        max-width: 21px;
+        user-select: none;
+    }
+
+    &:hover {
+        background-color: #81aefd;
+    }
+
+    &:active {
+        background-color: #5d98ffc8;
+    }
+}
+.findVerticalLine {
+    display: inline-block;
+    height: 75%;
+    width: 1px;
+    background-color: #81aefd;
+}
+.nopepadCloseFind {
+    border: 1px solid red;
+    flex: 0 0 50px;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+        display: inline-block;
+        max-width: 22px;
+        user-select: none;
+    }
+
+    &:hover {
+        background-color: #81aefd;
+    }
+
+    &:active {
+        background-color: #5d98ffc8;
+    }
+}

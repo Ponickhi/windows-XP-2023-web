@@ -1,0 +1,230 @@
+.hidden {
+    animation: menu-hide 0.2s ease forwards;
+}
+.visible {
+    animation: menu-show 0.2s ease forwards;
+}
+.slideup {
+    animation: slide-up 0.2s ease backwards;
+}
+.slidedown {
+    animation: slide-down 0.2s ease backwards;
+}
+.begin-tray {
+    animation: rotate-back 0.2s ease forwards;
+}
+.end-tray {
+    animation: rotate-tray 0.2s ease forwards;
+}
+.slide-left {
+    animation: slideLeft 0.2s ease forwards;
+}
+.slide-right {
+    animation: slideRight 0.2s ease forwards;
+}
+.dropDownFile {
+    animation: dropDownFile 0.1s ease forwards;
+}
+.dropUpFile {
+    animation: dropUpFile 0.1s ease forwards;
+}
+.dropDownEdit {
+    animation: dropDownEdit 0.1s ease forwards;
+}
+.dropUpEdit {
+    animation: dropUpEdit 0.1s ease forwards;
+}
+.dropDownView {
+    animation: dropDownView 0.1s ease forwards;
+}
+.dropUpView {
+    animation: dropUpView 0.1s ease forwards;
+}
+.tasbarScaling {
+    animation: taskbarScaling 0.2s ease forwards;
+}
+.fading {
+    animation: fading 0.4s ease forwards;
+}
+.fadingBack {
+    animation: fadingBack 0.4s ease forwards;
+}
+@keyframes fading {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadingBack {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes taskbarScaling {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(0.8, 0.8);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+@keyframes dropDownView {
+    0% {
+        display: none;
+        opacity: 0;
+        bottom: -50px;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+        bottom: -74px; 
+    }
+}
+@keyframes dropUpView {
+    0% {
+        display: block;
+        opacity: 1;
+        bottom: -74px; 
+    }
+    100% {
+        display: none;
+        opacity: 0;
+        bottom: -50px;
+    }
+}
+@keyframes dropDownEdit {
+    0% {
+        display: none;
+        opacity: 0;
+        bottom: -240px;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+        bottom: -261.5px; 
+    }
+}
+@keyframes dropUpEdit {
+    0% {
+        display: block;
+        opacity: 1;
+        bottom: -261.5px; 
+    }
+    100% {
+        display: none;
+        opacity: 0;
+        bottom: -240px;  
+    }
+}
+@keyframes dropDownFile {
+    0% {
+        display: none;
+        opacity: 0;
+        bottom: -125px;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+        bottom: -149px; 
+    }
+}
+@keyframes dropUpFile {
+    0% {
+        display: block;
+        opacity: 1;
+        bottom: -149px; 
+    }
+    100% {
+        display: none;
+        opacity: 0;
+        bottom: -125px;
+    }
+}
+@keyframes menu-show {
+    0% {
+        display: none;
+        opacity: 0;
+        bottom: -50%;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+        bottom: 99%;
+    }
+}
+@keyframes menu-hide {
+    0% {
+        display: block;
+        opacity: 1;
+        bottom: 99%;
+    }
+    100% {
+        display: none;
+        opacity: 0;
+        bottom: -50%;
+    }
+}
+@keyframes slide-up {
+    0% {
+        opacity: 100%;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0%;
+        transform: translateY(25%);
+    }
+}
+@keyframes slide-down {
+    0% {
+        opacity: 100%;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0%;
+        transform: translate(0, -25%);
+    }
+}
+@keyframes rotate-tray {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+@keyframes rotate-back {
+    0% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@keyframes slideLeft {
+    0% {
+        opacity: 100%;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0%;
+        transform: translateX(-50%);
+    }
+}
+@keyframes slideRight {
+    0% {
+        opacity: 100%;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0%;
+        transform: translateX(50%);
+    }
+}
