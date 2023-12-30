@@ -38,6 +38,7 @@ $('document').ready(function() {
     const findCross = $('.nopepadCloseFind, .notepadfindImage');
     const notepadFindFieal = $('#findWordNotepad');
     const notepadDelete = $('#NotepadDelete');
+    const notepadPaste = $('#notepadPaste');
     var minimizeTarget = notepadTaskbar.offset();
     var notepadInitialZoom = 100;
     var tagetUnwrap;
@@ -741,13 +742,49 @@ $('document').ready(function() {
         .catch((error) => {
             console.log(error);
         })
-    })
+    });
 
     notepadSelectAll.click(function() {
         notepadTextArea.focus();
         notepadTextArea[0].setSelectionRange(0, notepadTextArea.val().length);
         updateDivState();
-    })
+    });
+
+    notepadDelete.click(function() {
+        currentContent = notepadTextArea.val();
+        notepadTextArea.val(currentContent.replace(notepadSelectedText, '').trim());
+
+        setTimeout(function() {
+            previousContent.push(currentContent);
+        }, 100);
+    });
+
+    notepadPaste.click(function() {
+        // navigator.clipboard.readText().then(function(clipboardText) {
+        //     notepadTextArea.val(clipboardText);
+        // }).catch(function(err) {
+        //     console.error('Failed to read clipboard contents: ', err);
+        // });
+
+        navigator.clipboard.readText().then(function(clipboardText) {
+            const textarea = $('#notepad-text-area')[0]; // Get the DOM element
+
+            const startPos = textarea.selectionStart;
+            const endPos = textarea.selectionEnd;
+
+            const textBefore = textarea.value.substring(0, startPos);
+            const textAfter = textarea.value.substring(endPos, textarea.value.length);
+
+            textarea.value = textBefore + clipboardText + textAfter;
+
+            // Move the cursor to the end of the pasted text
+            const newCursorPosition = startPos + clipboardText.length;
+            textarea.setSelectionRange(newCursorPosition, newCursorPosition);
+        }).catch(function(err) {
+            console.error('Failed to read clipboard contents: ', err);
+        });
+    });
+
 
     notepadFind.click(function() {
         if (!findCheck) {
@@ -798,24 +835,21 @@ $('document').ready(function() {
             if (wordEnd === -1) {
                 wordEnd = searchText.length;
             }
-
+        }   
+        else if(notepadSearchIndex === 0) {
+            console.log('Aloha')
+            notepadSearchIndex = -1;
+            }
+        else {
+           console.log('nothing') 
+        }
         foundWord = searchText.substring(wordStart, wordEnd);
 
-            console.log(foundWord)
-        } else {
-            
-        }
+        console.log(foundWord);
+        //ДОРОБИТИ ОСЬ ЦЕ БЛЯХА І МАЙЖЕ КІНЕЦЬ! 
     });
 
-    notepadDelete.click(function() {
-        currentContent = notepadTextArea.val();
-        notepadTextArea.val(currentContent.replace(notepadSelectedText, '').trim());
-
-        setTimeout(function() {
-            previousContent.push(currentContent);
-        }, 100);
-    })
-
+    
 }); 
 
 
