@@ -36,6 +36,8 @@ $('document').ready(function() {
     const notepadSelectAll = $('#notepadSelectAll');
     const notepadFind = $('#notepadFind');
     const findCross = $('.nopepadCloseFind, .notepadfindImage');
+    const notepadFindFieal = $('#findWordNotepad');
+    const notepadDelete = $('#NotepadDelete');
     var minimizeTarget = notepadTaskbar.offset();
     var notepadInitialZoom = 100;
     var tagetUnwrap;
@@ -48,9 +50,6 @@ $('document').ready(function() {
     var currentContent;
     var notepadSelectedText;
     var findCheck = false;
-
-
-    //Дописати функціонал менюшек, можливо прибрати пунк open. Подумати чи можна ще якось покращити картину, якщо ні - супер, створюй новий JS Файл і давай писати нову прогу, можливо зроби калькулятор, має бути легко. 
     
     notepadTaskbar.hover(function() {
         if(!notepadProgramm.hasClass('active-now')) {
@@ -727,22 +726,18 @@ $('document').ready(function() {
     });
 
     notepadCut.click(function() {
+        currentContent = notepadTextArea.val();
         navigator.clipboard.writeText(notepadSelectedText)
-        .then(() => {
-            console.log(notepadSelectedText);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-
         notepadTextArea.val(currentContent.replace(notepadSelectedText, '').trim());
+
+        setTimeout(function() {
+            previousContent.push(currentContent);
+        }, 100);
+
     });
 
     notepadCopu.click(function() {
         navigator.clipboard.writeText(notepadSelectedText)
-        .then(() => {
-            console.log(notepadSelectedText);
-        })
         .catch((error) => {
             console.log(error);
         })
@@ -751,6 +746,7 @@ $('document').ready(function() {
     notepadSelectAll.click(function() {
         notepadTextArea.focus();
         notepadTextArea[0].setSelectionRange(0, notepadTextArea.val().length);
+        updateDivState();
     })
 
     notepadFind.click(function() {
@@ -789,6 +785,36 @@ $('document').ready(function() {
         }, 200);
         findCheck = false;
     });
+
+    notepadFindFieal.on('input', function() {
+        var textToFind = $(this).val().trim();
+        var searchText = notepadTextArea.val();
+        var foundWord = '';
+        var notepadSearchIndex = searchText.indexOf(textToFind);
+        if (notepadSearchIndex !== -1) {
+            var wordStart = searchText.lastIndexOf(' ', notepadSearchIndex) + 1;
+            var wordEnd = searchText.indexOf(' ', notepadSearchIndex);
+
+            if (wordEnd === -1) {
+                wordEnd = searchText.length;
+            }
+
+        foundWord = searchText.substring(wordStart, wordEnd);
+
+            console.log(foundWord)
+        } else {
+            
+        }
+    });
+
+    notepadDelete.click(function() {
+        currentContent = notepadTextArea.val();
+        notepadTextArea.val(currentContent.replace(notepadSelectedText, '').trim());
+
+        setTimeout(function() {
+            previousContent.push(currentContent);
+        }, 100);
+    })
 
 }); 
 

@@ -516,7 +516,6 @@
     background-color: #81aefd;
 }
 .nopepadCloseFind {
-    border: 1px solid red;
     flex: 0 0 50px;
     height: 100%;
 
@@ -536,4 +535,7 @@
     &:active {
         background-color: #5d98ffc8;
     }
+}
+.highlight {
+    background-color: #add8e6; /* Blue background color */
 }

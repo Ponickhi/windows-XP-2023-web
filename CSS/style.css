@@ -3330,7 +3330,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nopepadCloseFind {
-  border: 1px solid red;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 50px;
           flex: 0 0 50px;
@@ -3358,6 +3357,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .nopepadCloseFind:active {
   background-color: rgba(93, 152, 255, 0.7843137255);
+}
+
+.highlight {
+  background-color: #add8e6; /* Blue background color */
 }
 
 body {
