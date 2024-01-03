@@ -39,6 +39,8 @@ $('document').ready(function() {
     const notepadFindFieal = $('#findWordNotepad');
     const notepadDelete = $('#NotepadDelete');
     const notepadPaste = $('#notepadPaste');
+    const nextWordFind = $('.notepadFindArrowDown, .nextWord').find('*');
+    const prevWordFind = $('.notepadFindArrowUp').find('*');
     var minimizeTarget = notepadTaskbar.offset();
     var notepadInitialZoom = 100;
     var tagetUnwrap;
@@ -760,14 +762,8 @@ $('document').ready(function() {
     });
 
     notepadPaste.click(function() {
-        // navigator.clipboard.readText().then(function(clipboardText) {
-        //     notepadTextArea.val(clipboardText);
-        // }).catch(function(err) {
-        //     console.error('Failed to read clipboard contents: ', err);
-        // });
-
         navigator.clipboard.readText().then(function(clipboardText) {
-            const textarea = $('#notepad-text-area')[0]; // Get the DOM element
+            const textarea = $('#notepad-text-area')[0]; 
 
             const startPos = textarea.selectionStart;
             const endPos = textarea.selectionEnd;
@@ -823,33 +819,86 @@ $('document').ready(function() {
         findCheck = false;
     });
 
-    notepadFindFieal.on('input', function() {
-        var textToFind = $(this).val().trim();
-        var searchText = notepadTextArea.val();
-        var foundWord = '';
-        var notepadSearchIndex = searchText.indexOf(textToFind);
-        if (notepadSearchIndex !== -1) {
-            var wordStart = searchText.lastIndexOf(' ', notepadSearchIndex) + 1;
-            var wordEnd = searchText.indexOf(' ', notepadSearchIndex);
+    
+    notepadFindFieal.on('keyup', function(e) {
+        if(e.which === 32 || e.which === 13) {
+            var txt = notepadTextArea.val();
 
-            if (wordEnd === -1) {
-                wordEnd = searchText.length;
+            varstrSearchTerm = notepadFindFieal.val();
+
+            var isCaseSensitive = false; 
+
+            if(isCaseSensitive == false) {
+                txt = txt.toLowerCase();
+                strSearchTerm = strSearchTerm.toLowerCase();
             }
-        }   
-        else if(notepadSearchIndex === 0) {
-            console.log('Aloha')
-            notepadSearchIndex = -1;
+            var cursorPos = (notepadTextArea.getCursorPosEnd());
+            var termPos = txt.indexOf(strSearchTerm, cursorPos);
+
+            if(termPos != -1) {
+                notepadTextArea.selectRange(termPos, termPos+strSearchTerm.length);
+            } else {
+                termPos = txt.indexOf(strSearchTerm);
+                if(termPos != -1) {
+                    notepadTextArea.selectRange(termPos, termPos+strSearchTerm.length);
+                } else {
+                    alert("not found");
+                }
             }
-        else {
-           console.log('nothing') 
+
+
+            var matches = [];
+            var pos = txt.indexOf(strSearchTerm);
+
+            while(pos > -1) {
+                matches.push(pos);
+                pos = txt.indexOf(strSearchTerm, pos+1);
+            }
+
+            for (var match in matches) {
+                console.log(match);
+            }
+            
         }
-        foundWord = searchText.substring(wordStart, wordEnd);
-
-        console.log(foundWord);
-        //ДОРОБИТИ ОСЬ ЦЕ БЛЯХА І МАЙЖЕ КІНЕЦЬ! 
+        // Продовжити розвивати цю ідею, зробити перемикання між результатами за допомогою клавіші, подумати як зробити хайлайт усіх результатів? 
     });
 
-    
+
+    nextWordFind.click(function(e) {
+        e.stopPropagation();
+    });
+
+    prevWordFind.click(function(e) {
+        e.stopPropagation();
+
+
+    })
+
+
+    $.fn.selectRange = function(start, end) {
+        return this.each(function() {
+            if(this.setSelectionRange) {
+                this.focus();
+                this.setSelectionRange(start, end);
+            }
+        });
+    };
+    $.fn.getCursorPosEnd = function() {
+        var pos = 0;
+        var input = this.get(0);
+
+        if(document.selection) {
+            input.focus();
+            var sel = document.selection.createRange();
+            pos = sel.text.length;
+        } else if(input.selectionStart || input.selectionStart == '0') {
+            pos = input.selectionEnd;
+            return pos;
+        }
+    };
+
+
+    //ДОРОБИТИ ФУНКЦІЮ FIND, ПОДУМАТИ ЯК ЦЕ ЗРОБИТИ КРАЩЕ НІЖ ЧАТ ПРОПОНУЄ, ЗРОБИТИ ВІДСЛІДКОВУВАННЯ КУРСОРУ І ДОДАВАННЯ ЦЬОГО В НИЖНЮ ПАНЕЛЬ (Ln, Col), ПІСЛЯ ЦЬОГО ПОЧИНАТИ НАРЕШТІ ПРАЦЮВАТИ НАД НАСТУПНОЮ ПРОГРАМОЮ 
 }); 
 
 
