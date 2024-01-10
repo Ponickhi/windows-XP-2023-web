@@ -1,20 +1,33 @@
-//Snapping
-.snapping-left {
+//Snapping: 
+#snapWindowLeft {
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
     position: absolute;
-    top: 0;
+    margin: 5px;
+    width: 0;
     left: 0;
-    height: 100%;
-    width: 2px;
-    background-color: red;
-}
-.snapping-right {
-    position: absolute;
     top: 0;
-    right: 0;
-    height: 100%;
-    width: 2px;
-    background-color: red;
+    height: 0;
+    background: linear-gradient(90deg, rgba(33, 79, 229, 0.8) 0%, rgba(19,140,251,0.7) 100%);
+    backdrop-filter: blur(10px);
+    display: none;
 }
+#snapWinowRight {
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+    position: absolute;
+    margin: 5px;
+    width: 0;
+    right: 0;
+    top: 0;
+    height: 0;
+    background: linear-gradient(90deg, rgba(19,140,251,0.7) 0%, rgba(33, 79, 229, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    display: none;
+}
+
 // Notepad 
 #notepad-panel {
     position: relative;
@@ -433,4 +446,5 @@
     pointer-events: all;
     opacity: 1;
 }
+
 

@@ -198,7 +198,7 @@ $('document').ready(function() {
                 tagetUnwrap = notepadProgramm.offset();
                 notepadProgramm.css({
                     transition:"all 0.2s ease",
-                    top: minimizeTarget.top - 250, 
+                    top: minimizeTarget.top - 200, 
                     left: minimizeTarget.left + 30,
                     transform: 'scale(0, 0)',
                     opacity: '0',
@@ -252,13 +252,11 @@ $('document').ready(function() {
         tagetUnwrap = notepadProgramm.offset();
         notepadProgramm.css({
             transition:"all 0.2s ease",
-            top: minimizeTarget.top - 250, 
+            top: minimizeTarget.top - 200, 
             left: minimizeTarget.left + 30,
             transform: 'scale(0, 0)',
             opacity: '0',
         });
-        console.log(minimizeTarget.top)
-        console.log(minimizeTarget.left)
         notepadTaskbar.css({
             background:'none'
         });
@@ -409,43 +407,98 @@ $('document').ready(function() {
     //-----------------------
 
     //Dragging + closing + snapping programs
+    let cursorPositionLeft;
+    let isGrabbing = false;
+    let viewPortWidth = $("body").width();
+    let viewportRight = 0.95 * viewPortWidth;
+    $(document).on('mousemove', function(event) {
+        cursorPositionLeft = event.clientX;
+        if(isGrabbing && cursorPositionLeft <= 30) {
+            $('#snapWindowLeft').css({
+                display: 'block',
+            });
+            setTimeout(function() {
+                $('#snapWindowLeft').css({ 
+                    width: '49.5%',
+                    height: '99%',
+                })
+            }, 50);
+           
+        } else if(isGrabbing && cursorPositionLeft >= viewportRight) {
+            $('#snapWinowRight').css({
+                display: 'block',
+            });
+            setTimeout(function() {
+                $('#snapWinowRight').css({ 
+                    width: '49.5%',
+                    height: '99%',
+                })
+            }, 50);
+        }
+        else {
+            $('#snapWindowLeft').css({
+                width: '0',
+                height: '0',
+            })
+            $('#snapWinowRight').css({
+                width: '0',
+                height: '0',
+            })
+            setTimeout(function() {
+                $('#snapWindowLeft').css({ 
+                    display: 'none',
+                })
+                $('#snapWinowRight').css({ 
+                    display: 'none',
+                })
+            }, 50)
+        }
+    })
     $(function() {
-        let viewPortWidth = $("body").width();
-        let viewportRight = 0.99 * viewPortWidth;
       $('#notepad-programm').draggable({
           handle: ".notepad-title-col",
-          containment: ".wrapper",
-          snap: ".snapping", 
-          snapMode: "outer",
+          start: function(event, ui) {
+            isGrabbing = true;
+          },
           stop: function(event, ui) {
             let swithWidth = elementWidth;
             let switchHeight = elementHeight;
-            let checkPosition = ui.helper.position();
-            let checkPositionRight = checkPosition.left + elementWidth;
-            console.log(checkPositionRight);
-            console.log(viewPortWidth)
-            console.log(viewportRight);
-            if(checkPosition.left < 2) {
+            if(cursorPositionLeft <= 30) {
                 $('#notepad-programm').css({
                     width: '50%',
                     height: '100%',
                     top: '0',
+                    left: '0',
                 });
-            } else if (checkPositionRight >= viewportRight) {
+                setTimeout(function() {
+                    $('#notepad-programm').css({
+                        transition: "none",
+                    }, 200);
+                })
+            } else if (cursorPositionLeft >= viewportRight) {
                 $('#notepad-programm').css({
                     width: '50%',
                     height: '100%',
                     top: '0',
                     left: '50%'
                 });
+                setTimeout(function() {
+                    $('#notepad-programm').css({
+                        transition: "none",
+                    }, 200);
+                })
             } else {
-                
                 $('#notepad-programm').css({
                     width: swithWidth + 'px',
                     height: switchHeight + 'px',
                 });
+                setTimeout(function() {
+                    $('#notepad-programm').css({
+                        transition: "none",
+                    }, 200);
+                })
             }
-            
+            isGrabbing = false;
         }
       });
       $('.dragProgram').resizable({
@@ -458,7 +511,6 @@ $('document').ready(function() {
       });
     
     });
-    //ЗРОБИТИ ВСЕ МОЖЛИВЕ ЩОБ ДРАГГАБЛЕ ЗАПРАЦЮВАВ І ВОНО ДІЛИЛИ ВІКНА НА 2 ЧАСТИНИ!!!! 
 
 
     // File, Edit, View menus Notepad 
@@ -699,7 +751,7 @@ $('document').ready(function() {
                 });
             }, 2500)
         } 
-    }); //ДОРОБИТИ NOTEPADSAVE - якщо текстерія пуста - то цей пункт має бути неможливим для вибору в меню, придумати стилі і скріпт і тд...
+    }); 
 
     notepadTextArea.on('mouseup keyup', function(e) {
         e.stopPropagation();

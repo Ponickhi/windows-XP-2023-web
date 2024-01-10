@@ -2540,22 +2540,44 @@ h1, h2, h3, h4, h5, h6 {
             transform: translateX(50%);
   }
 }
-.snapping-left {
+#snapWindowLeft {
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
   position: absolute;
-  top: 0;
+  margin: 5px;
+  width: 0;
   left: 0;
-  height: 100%;
-  width: 2px;
-  background-color: red;
+  top: 0;
+  height: 0;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(33, 79, 229, 0.8)), to(rgba(19, 140, 251, 0.7)));
+  background: linear-gradient(90deg, rgba(33, 79, 229, 0.8) 0%, rgba(19, 140, 251, 0.7) 100%);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  display: none;
 }
 
-.snapping-right {
+#snapWinowRight {
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
   position: absolute;
-  top: 0;
+  margin: 5px;
+  width: 0;
   right: 0;
-  height: 100%;
-  width: 2px;
-  background-color: red;
+  top: 0;
+  height: 0;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(19, 140, 251, 0.7)), to(rgba(33, 79, 229, 0.8)));
+  background: linear-gradient(90deg, rgba(19, 140, 251, 0.7) 0%, rgba(33, 79, 229, 0.8) 100%);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  display: none;
 }
 
 #notepad-panel {
@@ -3214,6 +3236,7 @@ body {
 }
 
 .wrapper {
+  overflow: hidden;
   position: relative;
   height: 100%;
   display: -webkit-box;
