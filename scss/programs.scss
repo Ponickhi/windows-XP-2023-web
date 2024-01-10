@@ -310,10 +310,10 @@
     position: absolute;
     z-index: 13;
     width: 200px;
-    height: 262.5px;
+    height: 225px;
     background-color: #79a7f6;
     backdrop-filter: blur(10px);
-    bottom: -262.5px;
+    bottom: 0px;
     left: 0;
 }
 .view-menu {
@@ -434,108 +434,3 @@
     opacity: 1;
 }
 
-.notepadFindSearch {
-    position: absolute;
-    z-index: 13;
-    top: 100%;
-    right: 0;
-    height: 50px;
-    width: 378px;
-    background-color: #2963c8a9;
-    backdrop-filter: blur(10px);
-    transition-duration: 0.2s;
-    transition-property: all;
-    transition-timing-function: ease;
-    transform-origin: top;
-    display: none;
-    align-items: center;
-    justify-content: space-around;
-    transform: scale(1, 0);
-}
-#findWordNotepad {
-    flex: 0 0 10%;
-    height: 100%;
-    padding: 5px 5px 5px 15px;
-    background-color: #79a7f6;
-    font-size: 1.2rem;
-    color: #fff;
-    &::placeholder {
-        color: #436eb9;
-    }
-    &:hover {
-        background-color: #81aefd;
-    }
-    &:focus {
-        background-color: #81aefd;
-    }
-}
-.notepadFindArrowDown {
-    flex: 0 0 50px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & img {
-        display: inline-block;
-        max-width: 21px;
-        user-select: none;
-    }
-
-    &:hover {
-        background-color: #81aefd;
-    }
-
-    &:active {
-        background-color: #5d98ffc8;
-    }
-}
-.notepadFindArrowUp {
-    flex: 0 0 50px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & img {
-        display: inline-block;
-        max-width: 21px;
-        user-select: none;
-    }
-
-    &:hover {
-        background-color: #81aefd;
-    }
-
-    &:active {
-        background-color: #5d98ffc8;
-    }
-}
-.findVerticalLine {
-    display: inline-block;
-    height: 75%;
-    width: 1px;
-    background-color: #81aefd;
-}
-.nopepadCloseFind {
-    flex: 0 0 50px;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & img {
-        display: inline-block;
-        max-width: 22px;
-        user-select: none;
-    }
-
-    &:hover {
-        background-color: #81aefd;
-    }
-
-    &:active {
-        background-color: #5d98ffc8;
-    }
-}
-.highlight {
-    background-color: yellow;
-  }

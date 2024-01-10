@@ -212,19 +212,6 @@
                         </div>
                     </div>
                     <div class="notepad-menu-column ">
-                        <div class="notepadFindSearch">
-                            <input type="text" id="findWordNotepad" placeholder="Find">
-                            <div class="notepadFindArrowDown">
-                                <img class="nextWord" src="img/arrow_down.png" alt="arrow-down">
-                            </div>
-                            <div class="notepadFindArrowUp">
-                                <img src="img/tray_arrow.png" alt="arow-up">
-                            </div>
-                            <span class="findVerticalLine"></span>
-                            <div class="nopepadCloseFind">
-                                <img class="notepadfindImage" src="img/cross.png" alt="close-cross">
-                            </div>
-                        </div>
                         <div class="file-menu">
                             <h2 class="NotepadfileTitle">File</h2>
                             <div class="fallDownFile dropUpFile">
@@ -246,7 +233,6 @@
                                     <li id="notepadCopy" class="menu-inactive">Copy</li>
                                     <li id="notepadPaste">Paste</li>
                                     <li id="NotepadDelete" class="menu-inactive">Delete</li>
-                                    <li id="notepadFind" class="menu-inactive">Find</li>
                                     <li id="notepadSelectAll">Select all</li>
                                 </ul>
                             </div>
@@ -283,7 +269,7 @@
                     </div>
                     <div class="notepad-legend-column">
                         <div class="notepad-line-col-legeng ">
-                            <p>Ln 1, Col 1</p>
+                            <p id="notepadLineCol"></p>
                         </div>
                         <span></span>
                         <div class="notepad-scale-legend ">
@@ -1056,6 +1042,6 @@
     <script src="js/wifi-menu.js"></script>
     <script src="js/panel.js"></script>
     <script src="js/desktop.js"></script>
-    <script src="js/programs.js"></script>
+    <script src="js/notepadProgramm.js"></script>
 </body>
 </html>

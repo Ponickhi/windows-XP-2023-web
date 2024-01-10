@@ -34,25 +34,19 @@ $('document').ready(function() {
     const notepadCut = $('#notepadCut');
     const notepadCopu = $('#notepadCopy');
     const notepadSelectAll = $('#notepadSelectAll');
-    const notepadFind = $('#notepadFind');
-    const findCross = $('.nopepadCloseFind, .notepadfindImage');
-    const notepadFindFieal = $('#findWordNotepad');
     const notepadDelete = $('#NotepadDelete');
     const notepadPaste = $('#notepadPaste');
-    const nextWordFind = $('.notepadFindArrowDown, .nextWord').find('*');
-    const prevWordFind = $('.notepadFindArrowUp').find('*');
     var minimizeTarget = notepadTaskbar.offset();
     var notepadInitialZoom = 100;
     var tagetUnwrap;
-    var elementWidth;
-    var elementHeight
+    var elementWidth = 700;
+    var elementHeight = 500;
     var wordwrapActivated = false;
     var notepadSavedText;
     var notepadSavedTextCheck = false;
     var previousContent = [];
     var currentContent;
     var notepadSelectedText;
-    var findCheck = false;
     
     notepadTaskbar.hover(function() {
         if(!notepadProgramm.hasClass('active-now')) {
@@ -304,11 +298,9 @@ $('document').ready(function() {
         $('#notepad-text-area').val('');
         notepadProgramm.removeClass('scaled-down');
         notepadProgramm.removeClass('active-now');
-        $('.notepadFindSearch').css({
-            transform: 'scale(1, 0)',
-            display: 'none',
-        });
-        findCheck = false;
+
+        elementHeight = 500;
+        elementWidth = 700;
 
         if(notepadSavedTextCheck == true) {
             notepadTextArea.val(notepadSavedText);
@@ -321,10 +313,9 @@ $('document').ready(function() {
         notepadProgramm.css({
             transition:"all 0.2s ease",
         });
-        elementWidth = notepadProgramm.width();
-        elementHeight = notepadProgramm.height();
         
-        if (elementWidth < elementsParent.width() && elementHeight < elementsParent.height()) {
+        
+        if (elementWidth < elementsParent.width() && elementHeight < elementsParent.height() || elementWidth < elementsParent.width() && elementHeight >= elementsParent.height() || elementWidth >= elementsParent.width() && elementHeight < elementsParent.height()) {
             notepadProgramm.css({
                 width: '100%',
                 height: '100%',
@@ -343,12 +334,15 @@ $('document').ready(function() {
                 height: notepadHeight + 'px',
             });
         }
-
         setTimeout(function() {
             notepadProgramm.css({
                 transition: 'none',
             })
+            elementWidth = notepadProgramm.width();
+            elementHeight = notepadProgramm.height();
         }, 200)
+        
+        
     })
 
     $('.desktop').on('mousedown', function(e) { //adding and removing active class to programm
@@ -415,22 +409,56 @@ $('document').ready(function() {
     //-----------------------
 
     //Dragging + closing + snapping programs
-
     $(function() {
-    
-      $('.dragProgram').draggable({
+        let viewPortWidth = $("body").width();
+        let viewportRight = 0.99 * viewPortWidth;
+      $('#notepad-programm').draggable({
           handle: ".notepad-title-col",
           containment: ".wrapper",
           snap: ".snapping", 
           snapMode: "outer",
+          stop: function(event, ui) {
+            let swithWidth = elementWidth;
+            let switchHeight = elementHeight;
+            let checkPosition = ui.helper.position();
+            let checkPositionRight = checkPosition.left + elementWidth;
+            console.log(checkPositionRight);
+            console.log(viewPortWidth)
+            console.log(viewportRight);
+            if(checkPosition.left < 2) {
+                $('#notepad-programm').css({
+                    width: '50%',
+                    height: '100%',
+                    top: '0',
+                });
+            } else if (checkPositionRight >= viewportRight) {
+                $('#notepad-programm').css({
+                    width: '50%',
+                    height: '100%',
+                    top: '0',
+                    left: '50%'
+                });
+            } else {
+                
+                $('#notepad-programm').css({
+                    width: swithWidth + 'px',
+                    height: switchHeight + 'px',
+                });
+            }
+            
+        }
       });
       $('.dragProgram').resizable({
         minHeight: 300,
         minWidth: 350,
+        stop: function() {
+            elementWidth = notepadProgramm.width();
+            elementHeight = notepadProgramm.height();
+        }
       });
-      
-    });
     
+    });
+    //ЗРОБИТИ ВСЕ МОЖЛИВЕ ЩОБ ДРАГГАБЛЕ ЗАПРАЦЮВАВ І ВОНО ДІЛИЛИ ВІКНА НА 2 ЧАСТИНИ!!!! 
 
 
     // File, Edit, View menus Notepad 
@@ -676,7 +704,7 @@ $('document').ready(function() {
     notepadTextArea.on('mouseup keyup', function(e) {
         e.stopPropagation();
         updateDivState();
-            
+        Cursorposition();
     });
     notepadTextArea.on('keydown', function(e) {
         if(e.which === 32 && $(this).is(':focus') || e.which === 13 && $(this).is(':focus')) {
@@ -691,17 +719,13 @@ $('document').ready(function() {
         if(!textareaValue == '') {
             notepadSave.removeClass('menu-inactive');
             $('#notepadUndo').removeClass('menu-inactive');
-            $('#notepadFind').removeClass('menu-inactive');
             notepadSave.addClass('menu-active');
             $('#notepadUndo').addClass('menu-active');
-            $('#notepadFind').addClass('menu-active');
         } else {
             notepadSave.removeClass('menu-active');
             $('#notepadUndo').removeClass('menu-active');
-            $('#notepadFind').removeClass('menu-active');
             notepadSave.addClass('menu-inactive');
             $('#notepadUndo').addClass('menu-inactive');
-            $('#notepadFind').addClass('menu-inactive');
         }
 
         if (!notepadSelectedText == '') {
@@ -760,7 +784,7 @@ $('document').ready(function() {
             previousContent.push(currentContent);
         }, 100);
     });
-
+    
     notepadPaste.click(function() {
         navigator.clipboard.readText().then(function(clipboardText) {
             const textarea = $('#notepad-text-area')[0]; 
@@ -781,124 +805,19 @@ $('document').ready(function() {
         });
     });
 
+    function Cursorposition() {
+        let cursorPositionInfo = $('#notepadLineCol');
 
-    notepadFind.click(function() {
-        if (!findCheck) {
-            $('.notepadFindSearch').css({
-                display: 'flex',
-            });
-            setTimeout(function() {
-                $('.notepadFindSearch').css({
-                    transform: 'scale(1, 1)',
-                });
-            });
-            findCheck = true;
-        } else {
-            $('.notepadFindSearch').css({
-                transform: 'scale(1, 0)',
-            });
-            setTimeout(function() {
-                $('.notepadFindSearch').css({
-                    display: 'none',
-                });
-            }, 200);
-            findCheck = false;
-        }
-    });
+        let cursorIndex = notepadTextArea[0].selectionStart;
 
-    findCross.click(function(e) {
-        e.stopPropagation();
-        $('.notepadFindSearch').css({
-            transform: 'scale(1, 0)',
-        });
-        setTimeout(function() {
-            $('.notepadFindSearch').css({
-                display: 'none',
-            });
-        }, 200);
-        findCheck = false;
-    });
+        let textBeforeCursor = notepadTextArea.val().substring(0, cursorIndex);
+        let lineNumber = textBeforeCursor.split('\n').length;
+        let columnNumber = textBeforeCursor.split('\n').pop().length + 1;
 
-    
-    notepadFindFieal.on('keyup', function(e) {
-        if(e.which === 32 || e.which === 13) {
-            var txt = notepadTextArea.val();
+        cursorPositionInfo.text(`Ln ${lineNumber}, Col ${columnNumber}`);
+    }
 
-            varstrSearchTerm = notepadFindFieal.val();
-
-            var isCaseSensitive = false; 
-
-            if(isCaseSensitive == false) {
-                txt = txt.toLowerCase();
-                strSearchTerm = strSearchTerm.toLowerCase();
-            }
-            var cursorPos = (notepadTextArea.getCursorPosEnd());
-            var termPos = txt.indexOf(strSearchTerm, cursorPos);
-
-            if(termPos != -1) {
-                notepadTextArea.selectRange(termPos, termPos+strSearchTerm.length);
-            } else {
-                termPos = txt.indexOf(strSearchTerm);
-                if(termPos != -1) {
-                    notepadTextArea.selectRange(termPos, termPos+strSearchTerm.length);
-                } else {
-                    alert("not found");
-                }
-            }
-
-
-            var matches = [];
-            var pos = txt.indexOf(strSearchTerm);
-
-            while(pos > -1) {
-                matches.push(pos);
-                pos = txt.indexOf(strSearchTerm, pos+1);
-            }
-
-            for (var match in matches) {
-                console.log(match);
-            }
-            
-        }
-        // Продовжити розвивати цю ідею, зробити перемикання між результатами за допомогою клавіші, подумати як зробити хайлайт усіх результатів? 
-    });
-
-
-    nextWordFind.click(function(e) {
-        e.stopPropagation();
-    });
-
-    prevWordFind.click(function(e) {
-        e.stopPropagation();
-
-
-    })
-
-
-    $.fn.selectRange = function(start, end) {
-        return this.each(function() {
-            if(this.setSelectionRange) {
-                this.focus();
-                this.setSelectionRange(start, end);
-            }
-        });
-    };
-    $.fn.getCursorPosEnd = function() {
-        var pos = 0;
-        var input = this.get(0);
-
-        if(document.selection) {
-            input.focus();
-            var sel = document.selection.createRange();
-            pos = sel.text.length;
-        } else if(input.selectionStart || input.selectionStart == '0') {
-            pos = input.selectionEnd;
-            return pos;
-        }
-    };
-
-
-    //ДОРОБИТИ ФУНКЦІЮ FIND, ПОДУМАТИ ЯК ЦЕ ЗРОБИТИ КРАЩЕ НІЖ ЧАТ ПРОПОНУЄ, ЗРОБИТИ ВІДСЛІДКОВУВАННЯ КУРСОРУ І ДОДАВАННЯ ЦЬОГО В НИЖНЮ ПАНЕЛЬ (Ln, Col), ПІСЛЯ ЦЬОГО ПОЧИНАТИ НАРЕШТІ ПРАЦЮВАТИ НАД НАСТУПНОЮ ПРОГРАМОЮ 
+    Cursorposition();
 }); 
 
 

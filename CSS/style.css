@@ -2264,48 +2264,48 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     display: none;
     opacity: 0;
-    bottom: -240px;
+    bottom: -200px;
   }
   100% {
     display: block;
     opacity: 1;
-    bottom: -261.5px;
+    bottom: -225px;
   }
 }
 @keyframes dropDownEdit {
   0% {
     display: none;
     opacity: 0;
-    bottom: -240px;
+    bottom: -200px;
   }
   100% {
     display: block;
     opacity: 1;
-    bottom: -261.5px;
+    bottom: -225px;
   }
 }
 @-webkit-keyframes dropUpEdit {
   0% {
     display: block;
     opacity: 1;
-    bottom: -261.5px;
+    bottom: -225px;
   }
   100% {
     display: none;
     opacity: 0;
-    bottom: -240px;
+    bottom: -200px;
   }
 }
 @keyframes dropUpEdit {
   0% {
     display: block;
     opacity: 1;
-    bottom: -261.5px;
+    bottom: -225px;
   }
   100% {
     display: none;
     opacity: 0;
-    bottom: -240px;
+    bottom: -200px;
   }
 }
 @-webkit-keyframes dropDownFile {
@@ -3009,11 +3009,11 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   z-index: 13;
   width: 200px;
-  height: 262.5px;
+  height: 225px;
   background-color: #79a7f6;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  bottom: -262.5px;
+  bottom: 0px;
   left: 0;
 }
 
@@ -3200,167 +3200,6 @@ h1, h2, h3, h4, h5, h6 {
 .menu-active {
   pointer-events: all;
   opacity: 1;
-}
-
-.notepadFindSearch {
-  position: absolute;
-  z-index: 13;
-  top: 100%;
-  right: 0;
-  height: 50px;
-  width: 378px;
-  background-color: rgba(41, 99, 200, 0.662745098);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
-  -webkit-transform-origin: top;
-          transform-origin: top;
-  display: none;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-transform: scale(1, 0);
-          transform: scale(1, 0);
-}
-
-#findWordNotepad {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 10%;
-          flex: 0 0 10%;
-  height: 100%;
-  padding: 5px 5px 5px 15px;
-  background-color: #79a7f6;
-  font-size: 1.2rem;
-  color: #fff;
-}
-#findWordNotepad::-webkit-input-placeholder {
-  color: #436eb9;
-}
-#findWordNotepad::-moz-placeholder {
-  color: #436eb9;
-}
-#findWordNotepad:-ms-input-placeholder {
-  color: #436eb9;
-}
-#findWordNotepad::-ms-input-placeholder {
-  color: #436eb9;
-}
-#findWordNotepad::placeholder {
-  color: #436eb9;
-}
-#findWordNotepad:hover {
-  background-color: #81aefd;
-}
-#findWordNotepad:focus {
-  background-color: #81aefd;
-}
-
-.notepadFindArrowDown {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 50px;
-          flex: 0 0 50px;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.notepadFindArrowDown img {
-  display: inline-block;
-  max-width: 21px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.notepadFindArrowDown:hover {
-  background-color: #81aefd;
-}
-.notepadFindArrowDown:active {
-  background-color: rgba(93, 152, 255, 0.7843137255);
-}
-
-.notepadFindArrowUp {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 50px;
-          flex: 0 0 50px;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.notepadFindArrowUp img {
-  display: inline-block;
-  max-width: 21px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.notepadFindArrowUp:hover {
-  background-color: #81aefd;
-}
-.notepadFindArrowUp:active {
-  background-color: rgba(93, 152, 255, 0.7843137255);
-}
-
-.findVerticalLine {
-  display: inline-block;
-  height: 75%;
-  width: 1px;
-  background-color: #81aefd;
-}
-
-.nopepadCloseFind {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 50px;
-          flex: 0 0 50px;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.nopepadCloseFind img {
-  display: inline-block;
-  max-width: 22px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.nopepadCloseFind:hover {
-  background-color: #81aefd;
-}
-.nopepadCloseFind:active {
-  background-color: rgba(93, 152, 255, 0.7843137255);
-}
-
-.highlight {
-  background-color: yellow;
 }
 
 body {
