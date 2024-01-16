@@ -36,7 +36,7 @@ $('document').ready(function() {
     const notepadSelectAll = $('#notepadSelectAll');
     const notepadDelete = $('#NotepadDelete');
     const notepadPaste = $('#notepadPaste');
-    var minimizeTarget = notepadTaskbar.offset();
+    var minimizeTarget;
     var notepadInitialZoom = 100;
     var tagetUnwrap;
     var elementWidth = 700;
@@ -152,6 +152,7 @@ $('document').ready(function() {
     })
 
     notepadTaskbar.click(function() {
+        minimizeTarget = notepadTaskbar.offset();
         if($('.notepad-app').hasClass('closed')) {
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
@@ -249,6 +250,7 @@ $('document').ready(function() {
     })
 
     minimizeButton.click(function() {
+        minimizeTarget = notepadTaskbar.offset();
         tagetUnwrap = notepadProgramm.offset();
         notepadProgramm.css({
             transition:"all 0.2s ease",
@@ -764,10 +766,24 @@ $('document').ready(function() {
             previousContent.push(currentContent);
         }
     });
+    function getSelectionText() {
+        if(window.getSelection) {
+            try {
+                var activeElement = document.activeElement;
+                if (activeElement && activeElement.value) {
+                    return activeElement.value.substring(activeElement.selectionStart, activeElement.selectionEnd);
+                } else {
+                    return window.getSelection().toString();
+                }
+            } catch (e) {}
+        } else if (document.selection && document.selection.type != "Control") {
+            return document.selection.createRange().text;
+        }
+    }
     function updateDivState() {
         const textareaValue = notepadTextArea.val().trim();
-        notepadSelectedText = window.getSelection().toString().trim();
-
+        // notepadSelectedText = window.getSelection().toString().trim();
+        notepadSelectedText = getSelectionText();
         if(!textareaValue == '') {
             notepadSave.removeClass('menu-inactive');
             $('#notepadUndo').removeClass('menu-inactive');
@@ -836,7 +852,6 @@ $('document').ready(function() {
             previousContent.push(currentContent);
         }, 100);
     });
-    
     notepadPaste.click(function() {
         navigator.clipboard.readText().then(function(clipboardText) {
             const textarea = $('#notepad-text-area')[0]; 

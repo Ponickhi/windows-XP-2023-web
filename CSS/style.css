@@ -2151,6 +2151,39 @@ h1, h2, h3, h4, h5, h6 {
           animation: fadingBack 0.4s ease forwards;
 }
 
+.contextMenuSlideUp {
+  -webkit-animation: contextslideUp 0.2s ease forwards;
+          animation: contextslideUp 0.2s ease forwards;
+}
+
+@-webkit-keyframes contextslideUp {
+  0% {
+    display: none;
+    opacity: 0;
+    top: -50px;
+  }
+  100% {
+    display: -webkit-box;
+    display: flex;
+    opacity: 100;
+    top: -75px;
+  }
+}
+
+@keyframes contextslideUp {
+  0% {
+    display: none;
+    opacity: 0;
+    top: -50px;
+  }
+  100% {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 100;
+    top: -75px;
+  }
+}
 @-webkit-keyframes fading {
   0% {
     opacity: 0;
@@ -2159,7 +2192,6 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
   }
 }
-
 @keyframes fading {
   0% {
     opacity: 0;
@@ -2215,6 +2247,7 @@ h1, h2, h3, h4, h5, h6 {
 @-webkit-keyframes dropDownView {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50px;
   }
@@ -2227,6 +2260,7 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes dropDownView {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50px;
   }
@@ -2244,6 +2278,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50px;
   }
@@ -2256,6 +2291,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50px;
   }
@@ -2263,6 +2299,7 @@ h1, h2, h3, h4, h5, h6 {
 @-webkit-keyframes dropDownEdit {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -200px;
   }
@@ -2275,6 +2312,7 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes dropDownEdit {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -200px;
   }
@@ -2292,6 +2330,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -200px;
   }
@@ -2304,6 +2343,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -200px;
   }
@@ -2311,6 +2351,7 @@ h1, h2, h3, h4, h5, h6 {
 @-webkit-keyframes dropDownFile {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -125px;
   }
@@ -2323,6 +2364,7 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes dropDownFile {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -125px;
   }
@@ -2340,6 +2382,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -125px;
   }
@@ -2352,6 +2395,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -125px;
   }
@@ -2359,6 +2403,7 @@ h1, h2, h3, h4, h5, h6 {
 @-webkit-keyframes menu-show {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50%;
   }
@@ -2371,6 +2416,7 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes menu-show {
   0% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50%;
   }
@@ -2388,6 +2434,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50%;
   }
@@ -2400,6 +2447,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   100% {
     display: none;
+    visibility: hidden;
     opacity: 0;
     bottom: -50%;
   }
@@ -3880,45 +3928,6 @@ body {
 }
 .taskbar-apps input:focus {
   background-color: #81aefd;
-}
-.taskbar-apps div {
-  width: 60px;
-  height: 100%;
-  padding: 5px 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.taskbar-apps div:hover {
-  background-color: rgba(93, 152, 255, 0.5215686275);
-}
-.taskbar-apps div:active img {
-  -webkit-transform: scale(0.8, 0.8);
-          transform: scale(0.8, 0.8);
-}
-.taskbar-apps img {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  display: block;
-  max-width: 45px;
-  max-height: 45px;
-  margin: auto auto;
-  padding: 5px;
-  border-radius: 5px;
-  -webkit-transition-duration: 0.1s;
-          transition-duration: 0.1s;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
 }
 
 #notepad-panel:hover {
@@ -5862,7 +5871,7 @@ input:checked + .wifi-on-off::before {
   padding: 0 2% 0 0;
 }
 .bluetooth-switcher input {
-  display: none;
+  display: none !important;
 }
 
 .bluetooth-on-off {
@@ -6181,7 +6190,7 @@ input:checked + .bluetooth-on-off::before {
 .clear-all-button {
   width: 30%;
   height: 100%;
-  display: none;
+  display: none !important;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -6251,7 +6260,7 @@ input:checked + .bluetooth-on-off::before {
 }
 
 .notification {
-  display: none;
+  display: none !important;
   width: 100%;
   -webkit-box-flex: 0;
       -ms-flex: 0 1 auto;
@@ -6589,4 +6598,137 @@ input:checked + .bluetooth-on-off::before {
   .tray img {
     max-width: 17px;
   }
+}
+#draggableApps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+#draggableApps li {
+  position: relative;
+}
+#draggableApps li div.taskbar-apps-back {
+  width: 60px;
+  height: 100%;
+  padding: 5px 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#draggableApps li div.taskbar-apps-back img {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: block;
+  max-width: 45px;
+  max-height: 45px;
+  margin: auto auto;
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+
+.taskbar-apps-back:hover {
+  background-color: rgba(93, 152, 255, 0.5215686275);
+}
+
+.taskbar-apps-back:active img {
+  -webkit-transform: scale(0.8, 0.8);
+          transform: scale(0.8, 0.8);
+}
+
+.cunstomContextMenu {
+  width: 200px;
+  height: 75px;
+  position: absolute;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background-color: rgba(41, 99, 200, 0.662745098);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  text-align: left;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 1.2rem;
+}
+.cunstomContextMenu div {
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  width: 100%;
+  padding: 0 0 0 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgba(93, 152, 255, 0.5215686275);
+}
+.cunstomContextMenu div:last-child {
+  border: none;
+}
+.cunstomContextMenu div:hover {
+  background-color: rgba(93, 152, 255, 0.5215686275);
+}
+.cunstomContextMenu div:active {
+  background-color: rgba(147, 186, 253, 0.5215686275);
+}
+
+#unpin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+#unpin img {
+  display: inline-block;
+  max-width: 24px;
+  margin: 0 5px 0 0;
+}
+
+#closeAppContext {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+#closeAppContext img {
+  display: inline-block;
+  max-width: 24px;
+  margin: 0 5px 0 0;
 }

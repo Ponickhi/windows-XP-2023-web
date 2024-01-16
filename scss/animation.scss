@@ -49,6 +49,22 @@
 .fadingBack {
     animation: fadingBack 0.4s ease forwards;
 }
+.contextMenuSlideUp {
+    animation: contextslideUp 0.2s ease forwards;
+}
+
+@keyframes contextslideUp {
+    0% {
+        display: none;
+        opacity: 0;
+        top: -50px;
+    }
+    100% {
+        display: flex;
+        opacity: 100;
+        top: -75px;
+    }
+}
 @keyframes fading {
     0% {
         opacity: 0;
@@ -79,6 +95,7 @@
 @keyframes dropDownView {
     0% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -50px;
     }
@@ -96,6 +113,7 @@
     }
     100% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -50px;
     }
@@ -103,6 +121,7 @@
 @keyframes dropDownEdit {
     0% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -200px;
     }
@@ -120,6 +139,7 @@
     }
     100% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -200px;  
     }
@@ -127,6 +147,7 @@
 @keyframes dropDownFile {
     0% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -125px;
     }
@@ -144,6 +165,7 @@
     }
     100% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -125px;
     }
@@ -151,11 +173,12 @@
 @keyframes menu-show {
     0% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -50%;
     }
     100% {
-        display: block;
+        display: block; 
         opacity: 1;
         bottom: 99%;
     }
@@ -168,6 +191,7 @@
     }
     100% {
         display: none;
+        visibility: hidden;
         opacity: 0;
         bottom: -50%;
     }

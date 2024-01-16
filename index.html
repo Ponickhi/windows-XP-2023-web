@@ -21,6 +21,7 @@
 <body draggable="false">
     <div class="wrapper" draggable="false">
         <div class="desktop">
+            
             <div class="div1 grid" draggable="false"> 
                 <div id="notepad-desktop" class="notepad-app app closed" draggable="true">
                     <img src="img/notepad.png" alt="notepad" draggable="false">
@@ -183,7 +184,8 @@
             <div class="div154 grid" draggable="false"> </div>
             <div class="div155 grid" draggable="false"> </div>
             <div class="div156 grid" draggable="false"> </div>
-            <div class="div157 grid" draggable="false"> </div>
+            <div class="div157 grid" draggable="false"> 
+            </div>
             <div class="div158 grid" draggable="false"> </div>
             <div class="div159 grid" draggable="false"> </div>
             <div class="div160 grid" draggable="false"> </div>
@@ -299,13 +301,21 @@
                 <div id="start-button" class="start">
                     <img id="start-icon" class="start-icon" src="img/start.svg" alt="start">
                 </div>
-                
+               
                 <div class="taskbar-apps">
                     <input id="search-field" type="text" placeholder="Search">
-                    <div class="taskbar-apps-back"><img draggable="false" src="img/explorer.png" alt="explorer"></div>
-                    <div id="notepad-panel" class="taskbar-apps-back notepad-app closed"><img draggable="false" src="img/notepad.png" alt="notepad">
-                    <span class="show-active"></span></div>
-                    <div class="taskbar-apps-back"><img draggable="false" src="img/chrome_mini.png" alt="Google chrome"> </div>
+                    <ul id="draggableApps">
+                        <li>
+                            <div class="taskbar-apps-back"><img draggable="false" src="img/explorer.png" alt="explorer"></div>
+                        </li>
+                        <li>
+                            <div id="notepad-panel" class="taskbar-apps-back notepad-app closed"><img draggable="false" src="img/notepad.png" alt="notepad">
+                            <span class="show-active"></span></div>
+                        </li>
+                        <li>
+                            <div class="taskbar-apps-back"><img draggable="false" src="img/chrome_mini.png" alt="Google chrome"> </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="date-menu">
                     <div class="date-cover">
@@ -457,7 +467,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
             <div class="search-menu hidden">

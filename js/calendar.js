@@ -5,7 +5,7 @@ scrolling = document.querySelector(".calendar"),
 showTime = $("#time"),
 showDate = $("#date-now"),
 calendarDays = $(".days");
-
+ 
 //getting new date, current year and month
 let date = new Date(),
 currYear = date.getFullYear(),

@@ -363,36 +363,7 @@ body {
             background-color: #81aefd;
         }
     }
-    & div {
-        width: 60px;
-        height: 100%;
-        padding: 5px 0 0 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &:hover {
-            background-color: #5d98ff85;
-        }
-        &:active {
-            & img {
-                transform:scale(0.8, 0.8)
-            }
-        }
-
-    }
-    & img {
-        user-select: none;
-        display: block;
-        max-width: 45px;
-        max-height: 45px;
-        margin: auto auto;
-        padding: 5px;
-        border-radius: 5px;
-
-        transition-duration: 0.1s;
-        transition-property: all;
-        transition-timing-function: ease;
-    }
+    
 }
 #notepad-panel {
     &:hover {
@@ -1682,7 +1653,7 @@ input:checked + .wifi-on-off::before {
     padding: 0 2% 0 0;
 
     & input {
-        display: none;
+        display: none !important;
     }
 }
 .bluetooth-on-off {
@@ -1888,7 +1859,7 @@ input:checked + .bluetooth-on-off::before {
 .clear-all-button {
     width: 30%;
     height: 100%;
-    display: none;
+    display: none !important;
     align-items: center;
     & button {
         display: inline-block;
@@ -1926,14 +1897,14 @@ input:checked + .bluetooth-on-off::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 1 100%;
+    flex: 1 1 100%; 
     width: 100%;
     & p{
         font-size: 1.3rem;
     }
 }
 .notification {
-    display: none;
+    display: none !important;
     width: 100%;
     flex: 0 1 auto;
     padding: 5px;
@@ -2224,5 +2195,103 @@ input:checked + .bluetooth-on-off::before {
         & img {
             max-width: 17px;
         }
+    }
+}
+
+#draggableApps {
+    display: flex;
+    height: 100%;
+
+    & li {
+        position: relative;
+
+        & div.taskbar-apps-back{
+            width: 60px;
+            height: 100%;
+            padding: 5px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & img {
+                user-select: none;
+                display: block;
+                max-width: 45px;
+                max-height: 45px;
+                margin: auto auto;
+                padding: 5px;
+                border-radius: 5px;
+        
+                transition-duration: 0.1s;
+                transition-property: all;
+                transition-timing-function: ease;
+            }
+        }
+    }
+}
+
+.taskbar-apps-back:hover{
+    background-color: #5d98ff85;
+}
+.taskbar-apps-back:active {
+    & img {
+        transform:scale(0.8, 0.8)
+    }
+}
+
+.cunstomContextMenu {
+    //Вигадати стилі для кастомного меню 
+    width: 200px;
+    height: 75px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: #2963c8a9;
+    backdrop-filter: blur(10px);
+    text-align: left;
+    user-select: none;
+    font-size: 1.2rem;
+    & div {
+        transition-duration: 0.2s;
+        transition-property: all;
+        transition-timing-function: ease;
+        flex: 1 1 auto;
+        width: 100%;
+        padding: 0 0 0 5px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #5d98ff85;
+    }
+    & div:last-child {
+        border: none;
+    }
+    & div:hover {
+        background-color: #5d98ff85;
+    }
+    & div:active {
+        background-color: #93bafd85;
+    }
+}
+
+#unpin {
+    display: flex;
+    justify-content: flex-start;
+
+    & img {
+        display: inline-block;
+        max-width: 24px;
+        margin: 0 5px 0 0;
+    }
+}
+#closeAppContext {
+    display: flex;
+    justify-content: flex-start;
+    & img {
+        display: inline-block;
+        max-width: 24px;
+        margin: 0 5px 0 0;
     }
 }

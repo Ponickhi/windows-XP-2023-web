@@ -92,7 +92,7 @@ $('.desktop').on('mousemove', function (e) {
           appPosition.push(appGridClass);
         }
       }
-    });
+    }); 
   }
 });
 

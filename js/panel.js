@@ -15,6 +15,7 @@ $(document).ready(function() {
     const calendarMenu = $(".calendar-notifications-menu");
     const hideAll = $(".hide-all");
     const hideAllHint = $(".hide-all-hint");
+    var checkContextMenu = false;
 
 
     function showScreen() {
@@ -180,7 +181,7 @@ $(document).ready(function() {
         })
     }
     function quickMenuToggle() {
-      quickButton.click(function(e) {
+      quickButton.click(function(e) { 
         e.stopPropagation();
         if (quickMenu.hasClass("hidden")) {
           quickMenu.toggleClass("visible");
@@ -281,6 +282,10 @@ $(document).ready(function() {
         calendarMenu.removeClass("visible");
         calendarMenu.addClass("hidden");
       }
+      if(checkContextMenu) {
+        $('#draggableApps li').find('.cunstomContextMenu').remove();
+          checkContextMenu = false;
+      }
     });
   
     startToggle();
@@ -290,5 +295,61 @@ $(document).ready(function() {
     quickMenuToggle();
     calendarToggle();
     showScreen();
+
+
+    //Panel apps shortcuts draggable 
+
+    $(function() {
+      $('#draggableApps').sortable({
+        containtment: 'parent',
+        axis: 'x',
+        start: function() {
+          $('.taskbar-apps-back').css({
+            background: 'none',
+          })
+          $('.cunstomContextMenu').removeClass('contextMenuSlideUp');
+          $('#draggableApps li').find('.cunstomContextMenu').remove();
+          checkContextMenu = false;
+        },
+        stop: function() {
+          $('.taskbar-apps-back').hover(function(){
+            $(this).css({
+              background: '#5d98ff85',
+            })
+          }, function() {
+            $(this).css({
+              background: '',
+            })
+          })
+        },
+        
+      });
+    })
+   
+    $('#draggableApps li').on('contextmenu', function(event) {
+      event.preventDefault();
+
+      if(checkContextMenu) {
+        $('#draggableApps li').find('.cunstomContextMenu').remove();
+          checkContextMenu = false;
+      }
+
+       var newElement = $('<div class="cunstomContextMenu contextMenuSlideUp"><div id="unpin"> <img src="img/unpin.png" alt="unpin">Unpin from taskbar</div><div id="closeAppContext"><img src="img/cross.png" alt="">Close window</div></div>');
+
+      if (!checkContextMenu) {
+        $(this).css({ 
+          position: 'relative',
+        });
+        $(this).append(newElement);
+        checkContextMenu = true;
+
+        if($('.notepad-app').hasClass('closed')) {
+          $('#closeAppContext').addClass('menu-inactive');
+        } else {
+          $('#closeAppContext').removeClass('menu-inactive');
+        }
+      } 
+
+    });
   });
   
