@@ -325,7 +325,7 @@ $(document).ready(function() {
         
       });
     })
-   
+
     $('#draggableApps li').on('contextmenu', function(event) {
       event.preventDefault();
 
@@ -341,15 +341,41 @@ $(document).ready(function() {
           position: 'relative',
         });
         $(this).append(newElement);
+
         checkContextMenu = true;
 
-        if($('.notepad-app').hasClass('closed')) {
+        if(!$(this).hasClass('pinned')) {
+          $('#unpin').addClass('menu-inactive');
+        } 
+
+        if($(this).hasClass('closed')) { 
           $('#closeAppContext').addClass('menu-inactive');
         } else {
           $('#closeAppContext').removeClass('menu-inactive');
         }
+
+       
       } 
 
+      $('#unpin').on('click', function() {
+        if ($(this).closest('li').hasClass('pinned')) {
+          $(this).closest('li').removeClass('pinned');
+          $(this).closest('li').remove();
+        }
+      }); 
+
+      $('#closeAppContext').on('click', function() {
+        if (!$(this).closest('.notepad-app').hasClass('closed')) {
+
+          closeNotepadVar();
+
+        }
+      });
+      
     });
+
+
+
+
   });
   

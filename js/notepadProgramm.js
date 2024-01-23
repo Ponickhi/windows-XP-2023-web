@@ -1,41 +1,41 @@
 //Notepad:
-$('document').ready(function() {
-    const notepadProgramm = $('.notepad-programm');
-    const notepadProgrammAll = $('.notepad-programm').find('*');
-    const elementsParent = $('.desktop');
-    const notepadStartTile = $('#notepad-tile');
-    const notepadStartList = $('#notepad-start');
-    const notepadTaskbar = $('#notepad-panel');
-    const notepadDesktopIcon = $('#notepad-desktop');
-    const notepadScaleTarget = $('#notepad-scale-target');
+
+    var notepadProgramm = $('.notepad-programm');
+    var notepadProgrammAll = $('.notepad-programm').find('*');
+    var elementsParent = $('.desktop');
+    var notepadStartTile = $('#notepad-tile');
+    var notepadStartList = $('#notepad-start');
+    var notepadTaskbar = $('#notepad-panel');
+    var notepadDesktopIcon = $('#notepad-desktop');
+    var notepadScaleTarget = $('#notepad-scale-target');
     var NotepadFileMenu = $('.file-menu');
     var NotepadFileList = $('.fallDownFile');
     var NotepadEditMenu = $('.edit-menu, NotepadEditTitle');
     var NotepadEditList = $('.fallDownEdit'); 
     var NotepadViewMenu = $('.view-menu, NotepadViewTitle');
     var NotepadViewList = $('.fallDownView');
-    const notepadTaskbarImage = $('.notepad-app img')
-    const minimizeButton = $('.minimize');
-    const maximizeButton = $('.maximize');
-    const closeButton = $('.close-cross');
-    const NotepadMenuZoomElement = $('#NotepadZoom');
-    const NotepadZoomMenuMenu = $('.zoomList');
-    const NotepaZoomiN = $('#notepadZoomIn');
-    const notepadZoomOut = $('#NotepadZoomOut');
-    const notepadTextArea = $('#notepad-text-area');
-    const notepadresetZoom = $('#notepadRestoreZoom');
-    const notepadWordWrap = $('#notepadWordWrap');
-    const notepadCloseMenu = $('#notepadCloseMenu');
-    const notepadSaveAs = $('#NotepadsaveAs');
-    const notepadOpenFile = $('#notepadOpenFile');
-    const notepadInputFile = $('#notepadUploadTXT');
-    const notepadSave = $('#notepadSave');
-    const notepadUndo = $('#notepadUndo');
-    const notepadCut = $('#notepadCut');
-    const notepadCopu = $('#notepadCopy');
-    const notepadSelectAll = $('#notepadSelectAll');
-    const notepadDelete = $('#NotepadDelete');
-    const notepadPaste = $('#notepadPaste');
+    var notepadTaskbarImage = $('.notepad-app img')
+    var minimizeButton = $('.minimize');
+    var maximizeButton = $('.maximize');
+    var closeButton = $('.close-cross');
+    var NotepadMenuZoomElement = $('#NotepadZoom');
+    var NotepadZoomMenuMenu = $('.zoomList');
+    var NotepaZoomiN = $('#notepadZoomIn');
+    var notepadZoomOut = $('#NotepadZoomOut');
+    var notepadTextArea = $('#notepad-text-area');
+    var notepadresetZoom = $('#notepadRestoreZoom');
+    var notepadWordWrap = $('#notepadWordWrap');
+    var notepadCloseMenu = $('#notepadCloseMenu');
+    var notepadSaveAs = $('#NotepadsaveAs');
+    var notepadOpenFile = $('#notepadOpenFile');
+    var notepadInputFile = $('#notepadUploadTXT');
+    var notepadSave = $('#notepadSave');
+    var notepadUndo = $('#notepadUndo');
+    var notepadCut = $('#notepadCut');
+    var notepadCopu = $('#notepadCopy');
+    var notepadSelectAll = $('#notepadSelectAll');
+    var notepadDelete = $('#NotepadDelete');
+    var notepadPaste = $('#notepadPaste');
     var minimizeTarget;
     var notepadInitialZoom = 100;
     var tagetUnwrap;
@@ -72,6 +72,7 @@ $('document').ready(function() {
     
     notepadDesktopIcon.dblclick(function() {
         if($('.notepad-app').hasClass('closed')) {
+            notepadTaskbar.closest('li').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
             $('.show-active').css({
@@ -99,6 +100,7 @@ $('document').ready(function() {
 
     notepadStartList.click(function() {
         if($('.notepad-app').hasClass('closed')) {
+            notepadTaskbar.closest('li').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
             $('.show-active').css({
@@ -126,6 +128,7 @@ $('document').ready(function() {
 
     notepadStartTile.click(function() {
         if($('.notepad-app').hasClass('closed')) {
+            notepadTaskbar.closest('li').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
             notepadProgramm.css({
@@ -154,6 +157,7 @@ $('document').ready(function() {
     notepadTaskbar.click(function() {
         minimizeTarget = notepadTaskbar.offset();
         if($('.notepad-app').hasClass('closed')) {
+            notepadTaskbar.closest('li').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
             $('.show-active').css({
@@ -277,36 +281,73 @@ $('document').ready(function() {
         notepadProgramm.addClass('scaled-down');
     })
 
-    closeButton.click(function() {
-        notepadDesktopIcon.removeClass('open');
-        notepadStartList.removeClass('open');
-        notepadStartTile.removeClass('open');
-        notepadTaskbar.removeClass('open');
-        notepadDesktopIcon.addClass('closed');
-        notepadStartList.addClass('closed');
-        notepadStartTile.addClass('closed');
-        notepadTaskbar.addClass('closed');
-        $('.show-active').css({
-            width: '0',
-        });
-        notepadTaskbar.css({
-            background:'none'
-        });
-        notepadProgramm.css({
-            display: 'none',
-        })
-        $('#notepad-text-area').val('');
-        notepadProgramm.removeClass('scaled-down');
-        notepadProgramm.removeClass('active-now');
+    function closeNotepad(e) {
+        e.click(function() {
+            notepadTaskbar.closest('li').addClass('closed');
+            notepadDesktopIcon.removeClass('open');
+            notepadStartList.removeClass('open');
+            notepadStartTile.removeClass('open');
+            notepadTaskbar.removeClass('open');
+            notepadDesktopIcon.addClass('closed');
+            notepadStartList.addClass('closed');
+            notepadStartTile.addClass('closed');
+            notepadTaskbar.addClass('closed');
+            $('.show-active').css({
+                width: '0',
+            });
+            notepadTaskbar.css({
+                background:'none'
+            });
+            notepadProgramm.css({
+                display: 'none',
+            })
+            $('#notepad-text-area').val('');
+            notepadProgramm.removeClass('scaled-down');
+            notepadProgramm.removeClass('active-now');
+    
+            elementHeight = 500;
+            elementWidth = 700;
+    
+            if(notepadSavedTextCheck == true) {
+                notepadTextArea.val(notepadSavedText);
+                notepadSavedTextCheck = false;
+            } 
+        }); 
+    };
 
-        elementHeight = 500;
-        elementWidth = 700;
-
-        if(notepadSavedTextCheck == true) {
-            notepadTextArea.val(notepadSavedText);
-            notepadSavedTextCheck = false;
-        } 
-    }); 
+    var closeNotepadVar = () => {
+            notepadTaskbar.closest('li').addClass('closed');
+            notepadDesktopIcon.removeClass('open');
+            notepadStartList.removeClass('open');
+            notepadStartTile.removeClass('open');
+            notepadTaskbar.removeClass('open');
+            notepadDesktopIcon.addClass('closed');
+            notepadStartList.addClass('closed');
+            notepadStartTile.addClass('closed');
+            notepadTaskbar.addClass('closed');
+            $('.show-active').css({
+                width: '0',
+            });
+            notepadTaskbar.css({
+                background:'none'
+            });
+            notepadProgramm.css({
+                display: 'none',
+            })
+            $('#notepad-text-area').val('');
+            notepadProgramm.removeClass('scaled-down');
+            notepadProgramm.removeClass('active-now');
+    
+            elementHeight = 500;
+            elementWidth = 700;
+    
+            if(notepadSavedTextCheck == true) {
+                notepadTextArea.val(notepadSavedText);
+                notepadSavedTextCheck = false;
+            } 
+    }
+    closeNotepad(closeButton);
+    
 
     maximizeButton.click(function() {
         tagetUnwrap = notepadProgramm.offset();
@@ -674,6 +715,7 @@ $('document').ready(function() {
     })
     
     notepadCloseMenu.click(function() {
+        notepadTaskbar.closest('li').addClass('closed');
         notepadDesktopIcon.removeClass('open');
         notepadStartList.removeClass('open');
         notepadStartTile.removeClass('open');
@@ -885,7 +927,7 @@ $('document').ready(function() {
     }
 
     Cursorposition();
-}); 
+
 
 
 

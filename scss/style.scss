@@ -2240,7 +2240,8 @@ input:checked + .bluetooth-on-off::before {
 }
 
 .cunstomContextMenu {
-    //Вигадати стилі для кастомного меню 
+    top: -75px;
+    transform-origin: bottom;
     width: 200px;
     height: 75px;
     position: absolute;
@@ -2293,5 +2294,39 @@ input:checked + .bluetooth-on-off::before {
         display: inline-block;
         max-width: 24px;
         margin: 0 5px 0 0;
+    }
+}
+#startContextMenu {
+    bottom: -37.5px;
+    z-index: 5;
+    right: 0;
+    position: absolute;
+    height: 37.5px;
+    width: 200px;
+    background-color: #2963c8a9;
+    backdrop-filter: blur(10px);
+    font-size: 1.2rem;
+    color: #fff;
+    transform-origin: top;
+    
+}
+#pinToStart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease;
+
+    & img {
+        display: inline-block;
+        max-width: 24px;
+        margin: 0 5px 0 5px;
+    }
+
+    &:hover {
+        background-color: #5d98ff85;
     }
 }
