@@ -357,7 +357,7 @@ $(document).ready(function() {
        
       } 
 
-      $('#unpin').on('click', function() {
+      $('#unpin').on('click', function() { 
         if ($(this).closest('li').hasClass('pinned')) {
           $(this).closest('li').removeClass('pinned');
           $(this).closest('li').remove();

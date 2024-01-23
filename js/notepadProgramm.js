@@ -309,7 +309,7 @@
             elementWidth = 700;
     
             if(notepadSavedTextCheck == true) {
-                notepadTextArea.val(notepadSavedText);
+                notepadTextArea.val(notepadSavedText); 
                 notepadSavedTextCheck = false;
             } 
         }); 

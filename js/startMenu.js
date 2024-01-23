@@ -13,7 +13,7 @@ $('.apps li').on('contextmenu', function(event) {
 
     var startContextMenu = '<div id="startContextMenu" class="startContextMenuSlideDown"><div id="pinToStart"><img src="img/pin.png" alt="pin">Pin to taskbar</div></div>'
 
-    if(!checkstartcontext) {
+    if(!checkstartcontext) { 
         $(this).css({
             position: 'relative',
         })
