@@ -326,9 +326,8 @@ $(document).ready(function() {
       });
     })
 
-    $('#draggableApps li').on('contextmenu', function(event) {
+    $('#draggableApps').on('contextmenu','li', function(event) {
       event.preventDefault();
-
       if(checkContextMenu) {
         $('#draggableApps li').find('.cunstomContextMenu').remove();
           checkContextMenu = false;
@@ -359,8 +358,33 @@ $(document).ready(function() {
 
       $('#unpin').on('click', function() { 
         if ($(this).closest('li').hasClass('pinned')) {
+
+          if($('li').hasClass('startClockLi')) {
+            $('#startClockLi').removeClass('pinned');
+
+          }if($('li').hasClass('startCalculatorLi')) {
+            $('#startCalculatorLi').removeClass('pinned');
+
+          }if($('li').hasClass('startChromeLi')) {
+            $('#startChromeLi').removeClass('pinned');
+
+          }if($('li').hasClass('startStoreLi')) {
+            $('#startStoreLi').removeClass('pinned');
+
+          }if($('li').hasClass('notepad-app')) {
+            $('#notepad-start').removeClass('pinned');
+
+          }if($('li').hasClass('startPaintLi')) {
+            $('#startPaintLi').removeClass('pinned');
+
+          }if($('li').hasClass('startTelegramLi')) {
+            $('#startTelegramLi').removeClass('pinned');
+
+          } 
+
           $(this).closest('li').removeClass('pinned');
           $(this).closest('li').remove();
+
         }
       }); 
 

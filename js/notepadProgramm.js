@@ -48,23 +48,23 @@
     var currentContent;
     var notepadSelectedText;
     
-    notepadTaskbar.hover(function() {
+    $('#draggableApps').find('#notepad-panel').hover(function() {
         if(!notepadProgramm.hasClass('active-now')) {
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'#5d98ff85'
             });
         } else if(notepadProgramm.hasClass('scaled-down')) {
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'#5d98ff85'
             }); 
         }
     }, function() {
         if(!notepadProgramm.hasClass('active-now')) {
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'none'
             });
         } else if(notepadProgramm.hasClass('scaled-down')) {
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'none'
             });
         }
@@ -72,14 +72,14 @@
     
     notepadDesktopIcon.dblclick(function() {
         if($('.notepad-app').hasClass('closed')) {
-            notepadTaskbar.closest('li').removeClass('closed');
+            $('#draggableApps').find('#notepad-panel').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
-            $('.show-active').css({
+            $('.notepad-app').find('.show-active').css({
                 width: '100%',
                 background: '#fff',
             });
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'#5d98ff85'
             });
             notepadProgramm.css({
@@ -100,14 +100,14 @@
 
     notepadStartList.click(function() {
         if($('.notepad-app').hasClass('closed')) {
-            notepadTaskbar.closest('li').removeClass('closed');
+            $('#draggableApps').find('#notepad-panel').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
-            $('.show-active').css({
+            $('.notepad-app').find('.show-active').css({
                 width: '100%',
                 background: '#fff',
             });
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'#5d98ff85'
             });
             notepadProgramm.css({
@@ -128,7 +128,7 @@
 
     notepadStartTile.click(function() {
         if($('.notepad-app').hasClass('closed')) {
-            notepadTaskbar.closest('li').removeClass('closed');
+            $('#draggableApps').find('#notepad-panel').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
             notepadProgramm.css({
@@ -139,10 +139,10 @@
                 width: '700px',
                 height: '500px',
             });
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'#5d98ff85'
             });
-            $('.show-active').css({
+            $('.notepad-app').find('.show-active').css({
                 width: '100%',
                 background: '#fff',
             });
@@ -153,18 +153,18 @@
             return;
         }
     })
-
-    notepadTaskbar.click(function() {
-        minimizeTarget = notepadTaskbar.offset();
+    
+    $('#draggableApps').on('click','#notepad-panel', function() {
+        minimizeTarget = $('#draggableApps').find('#notepad-panel').offset();
         if($('.notepad-app').hasClass('closed')) {
-            notepadTaskbar.closest('li').removeClass('closed');
+            $('#draggableApps').find('#notepad-panel').closest('li').removeClass('closed');
             $('.notepad-app').removeClass('closed');
             $('.notepad-app').addClass('open');
-            $('.show-active').css({
+            $('.notepad-app').find('.show-active').css({
                 width: '100%',
                 background: '#fff',
             });
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'#5d98ff85'
             });
             notepadProgramm.css({
@@ -186,7 +186,7 @@
                     transition:"all 0.2s ease",
                     background: '#2963c8a9',
                 });
-                $('.show-active').css({
+                $('.notepad-app').find('.show-active').css({
                     width: '100%',
                     background: '#fff',
                 });
@@ -208,11 +208,11 @@
                     transform: 'scale(0, 0)',
                     opacity: '0',
                 });
-                $('.show-active').css({
+                $('.notepad-app').find('.show-active').css({
                     width: '70%',
                     background: '#81aefd',
                 });
-                notepadTaskbar.css({
+                $('#draggableApps').find('#notepad-panel').css({
                     background:'none'
                 });
                 setTimeout(function() {
@@ -228,11 +228,11 @@
                     transition:"all 0.2s ease",
                     display: 'block',
                 })
-                $('.show-active').css({
+                $('.notepad-app').find('.show-active').css({
                     width: '100%',
                     background: '#fff',
                 });
-                notepadTaskbar.css({
+                $('#draggableApps').find('#notepad-panel').css({
                     background:'#5d98ff85'
                 });
                 setTimeout(function() {
@@ -254,7 +254,7 @@
     })
 
     minimizeButton.click(function() {
-        minimizeTarget = notepadTaskbar.offset();
+        minimizeTarget = $('#draggableApps').find('#notepad-panel').offset();
         tagetUnwrap = notepadProgramm.offset();
         notepadProgramm.css({
             transition:"all 0.2s ease",
@@ -263,11 +263,11 @@
             transform: 'scale(0, 0)',
             opacity: '0',
         });
-        notepadTaskbar.css({
+        $('#draggableApps').find('#notepad-panel').css({
             background:'none'
         });
-        notepadTaskbarImage.addClass('tasbarScaling');
-        $('.show-active').css({
+        $('#draggableApps').find('#notepad-panel img').addClass('tasbarScaling');
+        $('.notepad-app').find('.show-active').css({
             width: '70%',
             background: '#81aefd',
         });
@@ -276,26 +276,26 @@
                 display: 'none', 
                 transition: 'none',
             })
-            notepadTaskbarImage.removeClass('tasbarScaling');
+            $('#draggableApps').find('#notepad-panel img').removeClass('tasbarScaling');
         }, 200);
         notepadProgramm.addClass('scaled-down');
     })
 
     function closeNotepad(e) {
         e.click(function() {
-            notepadTaskbar.closest('li').addClass('closed');
+            $('#draggableApps').find('#notepad-panel').closest('li').addClass('closed');
             notepadDesktopIcon.removeClass('open');
             notepadStartList.removeClass('open');
             notepadStartTile.removeClass('open');
-            notepadTaskbar.removeClass('open');
+            $('#draggableApps').find('#notepad-panel').removeClass('open');
             notepadDesktopIcon.addClass('closed');
             notepadStartList.addClass('closed');
             notepadStartTile.addClass('closed');
-            notepadTaskbar.addClass('closed');
-            $('.show-active').css({
+            $('#draggableApps').find('#notepad-panel').addClass('closed');
+            $('.notepad-app').find('.show-active').css({
                 width: '0',
             });
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'none'
             });
             notepadProgramm.css({
@@ -316,19 +316,19 @@
     };
 
     var closeNotepadVar = () => {
-            notepadTaskbar.closest('li').addClass('closed');
+        $('#draggableApps').find('#notepad-panel').closest('li').addClass('closed');
             notepadDesktopIcon.removeClass('open');
             notepadStartList.removeClass('open');
             notepadStartTile.removeClass('open');
-            notepadTaskbar.removeClass('open');
+            $('#draggableApps').find('#notepad-panel').removeClass('open');
             notepadDesktopIcon.addClass('closed');
             notepadStartList.addClass('closed');
             notepadStartTile.addClass('closed');
-            notepadTaskbar.addClass('closed');
-            $('.show-active').css({
+            $('#draggableApps').find('#notepad-panel').addClass('closed');
+            $('.notepad-app').find('.show-active').css({
                 width: '0',
             });
-            notepadTaskbar.css({
+            $('#draggableApps').find('#notepad-panel').css({
                 background:'none'
             });
             notepadProgramm.css({
@@ -393,11 +393,11 @@
                     transition:"all 0.2s ease",
                     background: '#2963c8a9',
                 })
-                $('.show-active').css({
+                $('.notepad-app').find('.show-active').css({
                     width: '100%',
                     background: '#fff',
                 });
-                notepadTaskbar.css({
+                $('#draggableApps').find('#notepad-panel').css({
                     background:'#5d98ff85'
                 });
                 $('.notepad-programm').addClass('active-now');
@@ -425,11 +425,11 @@
                         transition:"all 0.2s ease",
                         background: '#3b5684a9',
                     });
-                    $('.show-active').css({
+                    $('.notepad-app').find('.show-active').css({
                         width: '70%',
                         background: '#81aefd',
                     });
-                    notepadTaskbar.css({
+                    $('#draggableApps').find('#notepad-panel').css({
                         background:'none'
                     });
                     notepadProgramm.removeClass('active-now');
@@ -715,19 +715,19 @@
     })
     
     notepadCloseMenu.click(function() {
-        notepadTaskbar.closest('li').addClass('closed');
+        $('#draggableApps').find('#notepad-panel').addClass('closed');
         notepadDesktopIcon.removeClass('open');
         notepadStartList.removeClass('open');
         notepadStartTile.removeClass('open');
-        notepadTaskbar.removeClass('open');
+        $('#draggableApps').find('#notepad-panel').removeClass('open');
         notepadDesktopIcon.addClass('closed');
         notepadStartList.addClass('closed');
         notepadStartTile.addClass('closed');
-        notepadTaskbar.addClass('closed');
-        $('.show-active').css({
+        $('#draggableApps').find('#notepad-panel').addClass('closed');
+        $('.notepad-app').find('.show-active').css({
             width: '0',
         });
-        notepadTaskbar.css({
+        $('#draggableApps').find('#notepad-panel').css({
             background:'none'
         });
         notepadProgramm.css({
